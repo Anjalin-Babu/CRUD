@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+<body>
+    {% extends 'base.html' %}
+    {% load crispy_forms_tags %}
+    {% block content %}
+    <form method="POST">
+      {% csrf_token %}
+    
+    <p>
+      <!-- {{j|crispy}} -->
+      {{j.fullname|as_crispy_field}}
+      {{j.mobile|as_crispy_field}}
+      <div class="row">
+        <div class="col-md-4">
+             {{j.emp_code|as_crispy_field}}
+        </div>
+        <div class="col-md-8">
+          {{j.position|as_crispy_field}}
+        </div>
+
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-8">
+          <button type="submit" class="btn btn-success"> <i class="fa-solid fa-database"></i>
+           Submit
+          </button> 
+          
+          <a href=""><button type="submit" class="btn btn-info"> <i class="fa-solid fa-face-glasses"></i>back to list</button></a>
+        </div>
+        
+      </div>
+
+    </p>
+  </form>
+    {% endblock %}
+ </body>
+</html>

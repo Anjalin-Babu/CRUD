@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <table class="table-borderless">
+        <thead class="border-bottom font-weight-bold">
+            <tr>
+                <td><b>Full name &nbsp;</b></td>
+                <td><b>mobile &nbsp;</b></td>
+                <td><b>Position &nbsp;</b></td>
+                <td>
+                    <a href="{% url 'employee_insert' %} " class="btn btn-outline-success">
+                        <i class="fas fa-plus"></i> Add New
+                    </a>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employee_list %}
+            <tr>
+                <td>{{employee.fullname}}</td>
+                <td>{{employee.mobile}}</td>
+                <td>{{employee.position}} </td>
+            <td>
+                <a href="{% url 'employee_update' employee.id%}" class="btn text-secondary px=0">
+                    <i class="btn btn-outline-success">Edit</i>
+                </a>
+                <form action="{% url 'employee_delete' employee.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn">
+                        <i class="btn btn-outline-danger">Delete</i>
+                    </button>
+    
+                </form>
+        </td>
+        </tr>
+            {% endfor %}
+       
+    
+        </tbody>
+        
+    </table>
+   
+
+    {% endblock %}
+ </body>
+</html>
